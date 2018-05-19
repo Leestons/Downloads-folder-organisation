@@ -1,69 +1,66 @@
 #! python3
 # organise.py - Organises downloads folder.
 
-import shutil, os
-for filename in os.listdir():
-	if filename.endswith('.zip'):
-		shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\zip')
-		#print(filename)
-	if filename.endswith('.rar'):
-		shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\zip')
-		#print(filename)
-	elif filename.endswith('.iso'):
-		shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\iso')
-		#print(filename)
-	elif filename.endswith('.jpg'):
-		shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\images')
-		#print(filename)
-	elif filename.endswith('.jpeg'):
-		shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\images')
-		#print(filename)
-	elif filename.endswith('.JPEG'):
-		shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\images')
-		#print(filename)
-	elif filename.endswith('.JPG'):
-		shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\images')
-		#print(filename)
-	elif filename.endswith('.PNG'):
-		shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\images')
-		#print(filename)
-	elif filename.endswith('.png'):
-		shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\images')
-		#print(filename)
-	elif filename.endswith('.gif'):
-		shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\images')
-		#print(filename)
-	elif filename.endswith('.exe'):
-		shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\exe')
-		#print(filename)
-	elif filename.endswith('.msi'):
-		shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\exe')
-		#print(filename)
-	elif filename.endswith('.mp4'):
-		shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\videos')
-		#print(filename)
-	elif filename.endswith('.m4v'):
-		shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\videos')
-		#print(filename)
-	elif filename.endswith('.wmv'):
-		shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\videos')
-		#print(filename)
-	elif filename.endswith('.webm'):
-		shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\videos')
-		#print(filename)
-	elif filename.endswith('.jar'):
-		shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\jars')
-		#print(filename)
-	elif filename.endswith('.tar'):
-		shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\zip')
-		#print(filename)
-	elif filename.endswith('.gz'):
-		shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\zip')
-		#print(filename)
-	elif filename.endswith('.torrent'):
-		shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\torrents')
-		#print(filename)
-	elif filename.endswith('.pdf'):
-		shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\pdf')
-		#print(filename)
-print ('Done!')
+import shutil
+import os
+import send2trash
+import datetime
+now = datetime.datetime.now()
+logFile = open('C:\\Users\\\Lee\\Downloads\\log.txt', 'a')
+logFile.write(now.strftime("%d-%m-%y %H:%M \n"))
+logFile.write('\n')
+def logging(filename):
+	print('MOVED', filename)
+	logFile.write('MOVED ' + filename + '\n')
+video_ext = [".3g2", ".3gp", ".asf", ".asx", ".avi", ".flv", ".m2ts",\
+             ".m4v", ".mkv", ".mov", ".mp4", ".mpg", ".mpeg", ".rm",\
+             ".swf", ".vob", ".webm", ".wmv"]
+image_ext = [".jpg", ".jpeg", ".JPEG", ".JPG", ".png", ".PNG"]
+exe_ext = [".exe", ".msi"]
+gif_ext = [".gif"]
+music_ext = [".mp3"]
+zip_ext = [".zip", ".rar", ".tar", ".gz"]
+iso_ext = [".iso"]
+jar_ext = [".jar"]
+torrent_ext = [".torrent"]
+pdf_ext = [".pdf"]
+for filename in os.listdir('C:\\Users\\Lee\\Downloads'):
+	try:
+		if filename.endswith(tuple(zip_ext)):
+			shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\zip')
+			logging(filename)
+		elif filename.endswith(tuple(iso_ext)):
+			shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\iso')
+			logging(filename)
+		if filename.endswith(tuple(image_ext)):
+			shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\images')
+			logging(filename)
+		elif filename.endswith(tuple(gif_ext)):
+			shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\gif')
+			logging(filename)
+		elif filename.endswith(tuple(exe_ext)):
+			shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\exe')
+			logging(filename)
+		elif filename.endswith(tuple(video_ext)):
+			shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\videos')
+			logging(filename)
+		elif filename.endswith(tuple(jar_ext)):
+			shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\jars')
+			logging(filename)
+		elif filename.endswith(tuple(torrent_ext)):
+			shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\torrents')
+			logging(filename)
+		elif filename.endswith(tuple(pdf_ext)):
+			shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\pdf')
+			logging(filename)
+		elif filename.endswith(tuple(music_ext)):
+			shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\music')
+			logging(filename)
+	except:
+		send2trash.send2trash(filename)
+		print('DELETED {}. File already exists.'.format(filename))
+		logFile.write('DELETED' + filename)
+logFile.write('\n')
+logFile.close()
+print('Log file written successfully')
+input('Press enter to quit')
