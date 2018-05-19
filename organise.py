@@ -32,7 +32,7 @@ for filename in os.listdir('C:\\Users\\Lee\\Downloads'):
 		elif filename.endswith(tuple(iso_ext)):
 			shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\iso')
 			logging(filename)
-		if filename.endswith(tuple(image_ext)):
+		elif filename.endswith(tuple(image_ext)):
 			shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\images')
 			logging(filename)
 		elif filename.endswith(tuple(gif_ext)):
