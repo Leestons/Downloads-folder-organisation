@@ -6,7 +6,7 @@ import os
 import send2trash
 import datetime
 now = datetime.datetime.now()
-logFile = open('C:\\Users\\\Lee\\Downloads\\log.txt', 'a')
+logFile = open('C:\\Users\\Lee\\Downloads\\log.txt', 'a')
 logFile.write(now.strftime("%d-%m-%y %H:%M \n"))
 logFile.write('\n')
 def logging(filename):
