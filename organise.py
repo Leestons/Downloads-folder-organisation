@@ -6,7 +6,11 @@ import os
 import send2trash
 import datetime
 now = datetime.datetime.now()
+<<<<<<< HEAD
 logFile = open('C:\\Users\\Lee\\Downloads\\log.txt', 'a')
+=======
+logFile = open('C:\\Users\\\Lee\\Downloads\\log.txt', 'a')
+>>>>>>> cebef31142c4a9ed8d488aa35d87f55d552861db
 logFile.write(now.strftime("%d-%m-%y %H:%M \n"))
 logFile.write('\n')
 def logging(filename):
@@ -32,7 +36,11 @@ for filename in os.listdir('C:\\Users\\Lee\\Downloads'):
 		elif filename.endswith(tuple(iso_ext)):
 			shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\iso')
 			logging(filename)
+<<<<<<< HEAD
 		elif filename.endswith(tuple(image_ext)):
+=======
+		if filename.endswith(tuple(image_ext)):
+>>>>>>> cebef31142c4a9ed8d488aa35d87f55d552861db
 			shutil.move(filename, 'c:\\Users\\Lee\\Downloads\\images')
 			logging(filename)
 		elif filename.endswith(tuple(gif_ext)):
