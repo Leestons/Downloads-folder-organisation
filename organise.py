@@ -17,8 +17,9 @@ def logging(file):
     logFile.write('MOVED ' + file + '\n')
 
 
-video_ext = [".3g2", ".3gp", ".asf", ".asx", ".avi", ".flv", ".m2ts", ".m4v", ".mkv", ".mov", ".mp4", ".mpg", ".mpeg",
-             ".rm", ".swf", ".vob", ".webm", ".wmv"]
+video_ext = [".3g2", ".3gp", ".asf", ".asx", ".avi", ".flv", ".m2ts", ".m4v", 
+             ".mkv", ".mov", ".mp4", ".mpg", ".mpeg", ".rm", ".swf", ".vob", 
+             ".webm", ".wmv"]
 image_ext = [".jpg", ".jpeg", ".JPEG", ".JPG", ".png", ".PNG"]
 exe_ext = [".exe", ".msi"]
 gif_ext = [".gif"]
